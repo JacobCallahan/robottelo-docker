@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Checkout Robottelo
-git clone -q https://github.com/SatelliteQE/robottelo.git
+git clone -q https://github.com/JacobCallahan/robottelo.git
 
 # Update dependencies, if needed
 cd /root/robottelo

@@ -1,5 +1,5 @@
 FROM fedora:latest
-MAINTAINER https://github.com/SatelliteQE
+MAINTAINER https://github.com/JacobCallahan
 
 RUN dnf -y update; dnf clean all
 RUN dnf groupinstall -y "Development Tools"
@@ -13,7 +13,7 @@ ENV HOME /root
 WORKDIR /root
 
 # Clone Robottelo
-RUN git clone https://github.com/SatelliteQE/robottelo.git
+RUN git clone https://github.com/JacobCallahan/robottelo.git
 
 # Install Python deps
 RUN cd /root/robottelo && pip install -r requirements.txt
