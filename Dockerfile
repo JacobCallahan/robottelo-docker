@@ -25,7 +25,7 @@ RUN chmod +x /tmp/startup.sh
 # Add phantomjs
 RUN dnf install -y  make flex bison gperf ruby openssl-devel \
   freetype-devel fontconfig-devel libicu-devel sqlite-devel \
-  libpng-devel libjpeg-devel
+  libpng-devel libjpeg-devel --allowerasing
 
 RUN git clone git://github.com/ariya/phantomjs.git
 RUN cd /root/phantomjs && git checkout 2.0
