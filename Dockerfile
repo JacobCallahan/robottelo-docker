@@ -3,8 +3,8 @@ MAINTAINER https://github.com/JacobCallahan
 
 RUN dnf -y update; dnf clean all
 RUN dnf groupinstall -y "Development Tools"
-RUN dnf install -y which git python-pip
-RUN dnf install -y redhat-rpm-config-36 python-devel
+RUN dnf install -y which git python-pip redhat-rpm-config-36 gcc gcc-c++ \
+  libxml2 libxml2-devel libxslt libxslt-devel python-devel
 
 # Upgrade pip itself
 RUN pip install --upgrade pip
@@ -23,8 +23,8 @@ ADD startup.sh /tmp/
 RUN chmod +x /tmp/startup.sh
 
 # Add phantomjs
-RUN dnf install -y gcc gcc-c++ make flex bison gperf ruby \
-  openssl-devel freetype-devel fontconfig-devel libicu-devel sqlite-devel \
+RUN dnf install -y  make flex bison gperf ruby openssl-devel \
+  freetype-devel fontconfig-devel libicu-devel sqlite-devel \
   libpng-devel libjpeg-devel
 
 RUN git clone git://github.com/ariya/phantomjs.git
