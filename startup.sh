@@ -27,5 +27,5 @@ sed -i "s/^hostname.*/hostname=${SERVER_URL}/" robottelo.properties
 sed -i "s/^ssh_key.*/ssh_key=${SSH_KEY}/" robottelo.properties
 sed -i 's/^upstream.*/upstream=${UPSTREAM}/' robottelo.properties
 
-
-nosetests -v ${TESTS}
+# run the test(s)
+py.test -v ${TESTS}
