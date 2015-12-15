@@ -10,8 +10,10 @@ pip install -q --upgrade -r requirements.txt
 pip install -q --upgrade -r requirements-optional.txt
 
 # Copy the properties file
-if [ ! -e robottelo.properties ]
+if [ -e /root/robottelo.properties ]
 then
+    cp /root/robottelo.properties robottelo.properties
+else
 	cp robottelo.properties.sample robottelo.properties
 	sed -i "s/^project.*/project=satellite6/" robottelo.properties
 	sed -i "s/^# [robottelo].*/[robottelo]/" robottelo.properties
