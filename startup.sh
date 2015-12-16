@@ -11,8 +11,8 @@ pip install -q --upgrade -r requirements-optional.txt
 
 # Copy the properties file
 if [ -e /root/robottelo.properties ]; then
-    cp /root/robottelo.properties robottelo.properties
     echo "Copying mounted properties file."
+    cp /root/robottelo.properties robottelo.properties
 else
 	echo "Couldn't find existing properties file. Copying example."
 	cp robottelo.properties.sample robottelo.properties
@@ -33,5 +33,11 @@ if [ -z "$UPSTREAM" ]; then
 fi
 sed -i 's/^upstream.*/upstream=${UPSTREAM}/' robottelo.properties
 
-# run the test(s)
-py.test -v ${TESTS}
+# run the test(s) or the make target
+if [ ! -z "$TESTS" ]; then
+	py.test -v "$TESTS"
+elif [ ! -z "$MAKE" ]; then
+	make "$MAKE"
+else
+	echo "No tests specified! Please refer to documentation."
+fi
