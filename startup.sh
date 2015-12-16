@@ -13,7 +13,9 @@ pip install -q --upgrade -r requirements-optional.txt
 if [ -e /root/robottelo.properties ]
 then
     cp /root/robottelo.properties robottelo.properties
+    echo "Copying mounted properties file."
 else
+	echo "Couldn't find existing properties file. Copying example."
 	cp robottelo.properties.sample robottelo.properties
 	sed -i "s/^project.*/project=satellite6/" robottelo.properties
 	sed -i "s/^# [robottelo].*/[robottelo]/" robottelo.properties
