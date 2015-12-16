@@ -10,8 +10,7 @@ pip install -q --upgrade -r requirements.txt
 pip install -q --upgrade -r requirements-optional.txt
 
 # Copy the properties file
-if [ -e /root/robottelo.properties ]
-then
+if [ -e /root/robottelo.properties ]; then
     cp /root/robottelo.properties robottelo.properties
     echo "Copying mounted properties file."
 else
@@ -23,12 +22,15 @@ else
 fi
 
 # Tweak it
-if [ -z "$UPSTREAM" ]
-then
+if [ ! -z "$SERVER_URL" ]; then
+    sed -i "s/^hostname.*/hostname=${SERVER_URL}/" robottelo.properties
+fi
+if [ ! -z "$SSH_KEY" ]; then
+    sed -i "s/^ssh_key.*/ssh_key=${SSH_KEY}/" robottelo.properties
+fi
+if [ -z "$UPSTREAM" ]; then
     UPSTREAM="false"
 fi
-sed -i "s/^hostname.*/hostname=${SERVER_URL}/" robottelo.properties
-sed -i "s/^ssh_key.*/ssh_key=${SSH_KEY}/" robottelo.properties
 sed -i 's/^upstream.*/upstream=${UPSTREAM}/' robottelo.properties
 
 # run the test(s)
